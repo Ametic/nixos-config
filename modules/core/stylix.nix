@@ -40,12 +40,12 @@ in {
         name = "JetBrains Mono";
       };
       sansSerif = {
-        package = pkgs.montserrat;
-        name = "Montserrat";
+        package = pkgs.cantarell-fonts;
+        name = "Cantarell";
       };
       serif = {
-        package = pkgs.montserrat;
-        name = "Montserrat";
+        package = pkgs.cantarell-fonts;
+        name = "Cantarell";
       };
       sizes = {
         applications = 12;

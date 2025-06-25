@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   fonts = {
     packages = with pkgs; [
       noto-fonts-emoji
@@ -8,6 +6,7 @@
       font-awesome
       symbola
       material-icons
+      cantarell-fonts
       fira-code
       fira-code-symbols
     ];

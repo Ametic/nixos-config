@@ -4,5 +4,10 @@
     discord
     nodejs
     obs-studio
+    easyeffects
+    floorp
+    ntfs3g
+    spotify
+    telegram-desktop
   ];
 }
