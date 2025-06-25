@@ -71,5 +71,6 @@
     ytmdl # Tool For Downloading Audio From YouTube
     easyeffects
     floorp
+    ntfs3g
   ];
 }
