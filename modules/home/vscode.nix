@@ -13,6 +13,7 @@
           mads-hartmann.bash-ide-vscode
           tamasfe.even-better-toml
           zainchen.json
+          leonardssh.vscord
         ];
       };
     };
