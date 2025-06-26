@@ -10,5 +10,6 @@
     spotify
     telegram-desktop
     headsetcontrol
+    prismlauncher
   ];
 }
