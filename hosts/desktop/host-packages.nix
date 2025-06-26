@@ -9,5 +9,6 @@
     ntfs3g
     spotify
     telegram-desktop
+    headsetcontrol
   ];
 }
