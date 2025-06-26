@@ -11,5 +11,5 @@ Host name that i'm currently using on my main PC is called "desktop".
 
 # Big thanks to:
 
-[Zaney](https://gitlab.com/Zaney/zaneyos) - for providing this nice and easy setup that i can learn from.
-[dwilliam62](https://gitlab.com/dwilliam62) - for helping me fixing some problems on Zaney's Discord server.
+- [Zaney](https://gitlab.com/Zaney/zaneyos) - for providing this nice and easy setup that i can learn from.
+- [dwilliam62](https://gitlab.com/dwilliam62) - for helping me fixing some problems on Zaney's Discord server.
