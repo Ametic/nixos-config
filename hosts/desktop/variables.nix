@@ -16,7 +16,7 @@
 
   # Program Options
   browser = "floorp"; # Set Default Browser (google-chrome-stable for google-chrome)
-  terminal = "ghostty"; # Set Default System Terminal
+  terminal = "kitty"; # Set Default System Terminal
   keyboardLayout = "pl";
   consoleKeyMap = "pl";
 
@@ -41,8 +41,8 @@
   #waybarChoice = ../../modules/home/waybar/waybar-simple.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-nekodyke.nix;
-  #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
-  waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
+  waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
 
   # Set Animation style
   # Available options are:

@@ -11,5 +11,8 @@
     telegram-desktop
     headsetcontrol
     prismlauncher
+    kdePackages.kdenlive
+    video-downloader
+    droidcam
   ];
 }

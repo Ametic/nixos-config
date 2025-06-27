@@ -6,5 +6,6 @@ _: {
     hyprlock.enable = false;
     ghostty.enable = false;
     qt.enable = true;
+    floorp.enable = true;
   };
 }

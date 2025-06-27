@@ -121,8 +121,8 @@ in
             tooltip = false;
             format = "";
             # exec = "rofi -show drun";
-            #on-click = "sleep 0.1 && rofi-launcher";
-            on-click = "sleep 0.1 && nwg-drawer -mb 200 -mt 200 -mr 200 -ml 200";
+            on-click = "sleep 0.1 && rofi-launcher";
+            #on-click = "sleep 0.1 && nwg-drawer -mb 200 -mt 200 -mr 200 -ml 200";
           };
           "custom/hyprbindings" = {
             tooltip = false;

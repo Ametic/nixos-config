@@ -48,6 +48,7 @@
       if [ -f $HOME/.zshrc-personal ]; then
         source $HOME/.zshrc-personal
       fi
+      fastfetch
     '';
 
     shellAliases = {
