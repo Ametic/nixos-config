@@ -18,6 +18,11 @@
     (import ./rofi-launcher.nix {inherit pkgs;})
     (import ./screenshootin.nix {inherit pkgs;})
     (import ./hm-find.nix {inherit pkgs;})
-    (import ./rebuild.nix {inherit pkgs profile;})
+    (import ./zcli.nix {
+      inherit pkgs profile;
+      backupFiles = [
+        ".config/mimeapps.list.backup"
+      ];
+    })
   ];
 }
