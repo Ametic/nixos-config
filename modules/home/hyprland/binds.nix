@@ -1,31 +1,35 @@
-{host, ...}: let
+{ host, ... }:
+let
   inherit
     (import ../../../hosts/${host}/variables.nix)
     browser
     terminal
     ;
-in {
+in
+{
   wayland.windowManager.hyprland.settings = {
     bind = [
       "$modifier,Return,exec,${terminal}"
       "$modifier,K,exec,list-keybinds"
-      "$modifier CTRL,Return,exec,rofi-launcher"
+      "$modifier SHIFT,Return,exec,rofi-launcher"
+      "$modifier ,R,exec,rofi-launcher"
       "$modifier SHIFT,W,exec,web-search"
       "$modifier ALT,W,exec,wallsetter"
       "$modifier SHIFT,N,exec,swaync-client -rs"
       "$modifier,W,exec,${browser}"
       "$modifier,Y,exec,kitty -e yazi"
-      "$modifier SHIFT,E,exec,emopicker9000"
-      "$modifier,E,exec,thunar"
+      "$modifier,E,exec,emopicker9000"
       "$modifier,S,exec,screenshootin"
       "$modifier,D,exec,discord"
       "$modifier,O,exec,obs"
       "$modifier,C,exec,hyprpicker -a"
       "$modifier,G,exec,gimp"
-      "$modifier,T,exec,pypr toggle term"
+      "$modifier shift,T,exec,pypr toggle term"
+      "$modifier,T,exec, thunar"
       "$modifier,M,exec,pavucontrol"
       "$modifier,Q,killactive,"
       "$modifier,P,pseudo,"
+      "$modifier,V,exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
       "$modifier SHIFT,I,togglesplit,"
       "$modifier,F,fullscreen,"
       "$modifier SHIFT,F,togglefloating,"

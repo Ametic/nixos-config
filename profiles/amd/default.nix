@@ -1,8 +1,4 @@
-{
-  inputs,
-  host,
-  ...
-}: {
+{ host, ... }: {
   imports = [
     ../../hosts/${host}
     ../../modules/drivers
@@ -14,6 +10,4 @@
   drivers.nvidia-prime.enable = false;
   drivers.intel.enable = false;
   vm.guest-services.enable = false;
-  nixpkgs.overlays = [inputs.hyprpanel.overlay];
-  _module.args = {inherit inputs;};
 }

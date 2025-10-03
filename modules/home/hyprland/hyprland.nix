@@ -1,16 +1,17 @@
-{
-  host,
-  config,
-  pkgs,
-  ...
-}: let
+{ host
+, config
+, pkgs
+, ...
+}:
+let
   inherit
     (import ../../../hosts/${host}/variables.nix)
     extraMonitorSettings
     keyboardLayout
     stylixImage
     ;
-in {
+in
+{
   home.packages = with pkgs; [
     swww
     grim
@@ -39,30 +40,17 @@ in {
     systemd = {
       enable = true;
       enableXdgAutostart = true;
-      variables = ["--all"];
+      variables = [ "--all" ];
     };
     xwayland = {
       enable = true;
     };
     settings = {
-      exec-once = [
-        "wl-paste --type text --watch cliphist store # Stores only text data"
-        "wl-paste --type image --watch cliphist store # Stores only image data"
-        "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "systemctl --user start hyprpolkitagent"
-        "killall -q swww;sleep .5 && swww init"
-        "hyprpanel"
-        "nm-applet --indicator"
-        "pypr &"
-        "sleep 1.5 && swww img ${stylixImage}"
-        "easyeffects --gapplication-service"
-        "discord"
-      ];
-
       input = {
         kb_layout = "${keyboardLayout}";
         kb_options = [
+          "grp:alt_caps_toggle"
+          "caps:super"
         ];
         numlock_by_default = true;
         repeat_delay = 300;
@@ -114,7 +102,7 @@ in {
 
         #  Application not responding (ANR) settings
         enable_anr_dialog = true;
-        anr_missed_pings = 20;
+        anr_missed_pings = 15;
       };
 
       dwindle = {
@@ -154,8 +142,9 @@ in {
       };
 
       render = {
-        explicit_sync = 1; # Change to 1 to disable
-        explicit_sync_kms = 1;
+        # Disabling as no longer supported
+        #explicit_sync = 1; # Change to 1 to disable
+        #explicit_sync_kms = 1;
         direct_scanout = 0;
       };
 
@@ -163,6 +152,11 @@ in {
         new_status = "master";
         new_on_top = 1;
         mfact = 0.5;
+      };
+
+      # Ensure Xwayland windows render at integer scale; compositor scales them
+      xwayland = {
+        force_zero_scaling = true;
       };
     };
 
@@ -172,8 +166,7 @@ in {
       ${extraMonitorSettings}
       # To enable blur on waybar uncomment the line below
       # Thanks to SchotjeChrisman
-      # layerrule = blur,waybar
-
+      #layerrule = blur,waybar
       workspace = 1,monitor:DP-2
       workspace = 2,monitor:DP-2
       workspace = 3,monitor:DP-2

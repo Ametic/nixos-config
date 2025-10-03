@@ -1,11 +1,7 @@
-{
-  ...
-}:
-
-{
+{ ... }: {
   programs = {
     starship = {
-      enable = true;
+      enable = false;
       settings = {
         add_newline = false;
         buf = {

@@ -1,11 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.wezterm = {
-    enable = false;
+    enable = true;
     package = pkgs.wezterm;
   };
   home.file."./.config/wezterm/wezterm.lua".text = ''
     -- Config from Drew @justaguylinux small mods
-   
+
      local wezterm = require("wezterm")
 
      local config = wezterm.config_builder()

@@ -34,6 +34,7 @@
     os_icon                 # os identifier
     dir                     # current directory
     vcs                     # git status
+    hostname                # show hostname when not on local host 
     # prompt_char           # prompt symbol
   )
 

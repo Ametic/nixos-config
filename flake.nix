@@ -1,5 +1,5 @@
 {
-  description = "AmeOS";
+  description = "ZaneyOS";
 
   inputs = {
     home-manager = {
@@ -8,67 +8,55 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nvf.url = "github:notashelf/nvf";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     stylix.url = "github:danth/stylix/release-25.05";
+    nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
+    nixcord.url = "github:kaylorben/nixcord";
+
+    # Hypersysinfo  (Optional)
+    #hyprsysteminfo.url = "github:hyprwm/hyprsysteminfo";
+
+    # QuickShell (optional add quickshell to outputs to enable)
+    #quickshell = {
+    #  url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
-  outputs = {nixpkgs, ...} @ inputs: let
-    system = "x86_64-linux";
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      nix-flatpak,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
     host = "desktop";
     profile = "amd";
-    username = "ametic";
-  in {
-    nixosConfigurations = {
-      amd = nixpkgs.lib.nixosSystem {
+      username = "jakub";
+
+      # Deduplicate nixosConfigurations while preserving the top-level 'profile'
+      mkNixosConfig = gpuProfile: nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs;
           inherit username;
           inherit host;
-          inherit profile;
+          inherit profile; # keep using the let-bound profile for modules/scripts
         };
-        modules = [./profiles/amd];
+        modules = [
+          ./profiles/${gpuProfile}
+          nix-flatpak.nixosModules.nix-flatpak
+        ];
       };
-      nvidia = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [./profiles/nvidia];
-      };
-      nvidia-laptop = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [./profiles/nvidia-laptop];
-      };
-      intel = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [./profiles/intel];
-      };
-      vm = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [./profiles/vm];
+    in
+    {
+      nixosConfigurations = {
+        amd = mkNixosConfig "amd";
+        nvidia = mkNixosConfig "nvidia";
+        nvidia-laptop = mkNixosConfig "nvidia-laptop";
+        intel = mkNixosConfig "intel";
+        vm = mkNixosConfig "vm";
       };
     };
-  };
 }

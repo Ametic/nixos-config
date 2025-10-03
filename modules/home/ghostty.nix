@@ -1,7 +1,20 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+let
+  # A recent issue 7/7/2025 w/ghostty causes it to hang or respond slowly
+  # This is a workaround until a fix is released
+  myGhostty = pkgs.ghostty.overrideAttrs (_: {
+    preBuild = ''
+      shopt -s globstar
+      sed -i 's/^const xev = @import("xev");$/const xev = @import("xev").Epoll;/' **/*.zig
+      shopt -u globstar
+    '';
+  });
+in
+{
   programs.ghostty = {
     enable = true;
-    package = pkgs.ghostty;
+    package = myGhostty; # to fix a but in current builds of ghostty
+    #package = pkgs.ghostty;
   };
   home.file."./.config/ghostty/config".text = ''
 
@@ -21,6 +34,10 @@
     mouse-hide-while-typing = true
 
     # keybindings
+    # Copy/Paste
+    keybind = ctrl+shift+c=copy_to_clipboard
+    keybind = ctrl+shift+v=paste_from_clipboard
+
     keybind = alt+s>r=reload_config
     keybind = alt+s>x=close_surface
 

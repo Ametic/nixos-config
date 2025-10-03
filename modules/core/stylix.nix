@@ -1,10 +1,11 @@
-{
-  pkgs,
-  host,
-  ...
-}: let
+{ pkgs
+, host
+, ...
+}:
+let
   inherit (import ../../hosts/${host}/variables.nix) stylixImage;
-in {
+in
+{
   # Styling Options
   stylix = {
     enable = true;
@@ -40,12 +41,12 @@ in {
         name = "JetBrains Mono";
       };
       sansSerif = {
-        package = pkgs.cantarell-fonts;
-        name = "Cantarell";
+        package = pkgs.montserrat;
+        name = "Montserrat";
       };
       serif = {
-        package = pkgs.cantarell-fonts;
-        name = "Cantarell";
+        package = pkgs.montserrat;
+        name = "Montserrat";
       };
       sizes = {
         applications = 12;

@@ -1,8 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
+{ lib
+, pkgs
+, config
+, ...
 }:
 with lib;
 let
@@ -16,6 +15,6 @@ in
   config = mkIf cfg.enable {
     services.qemuGuest.enable = true;
     services.spice-vdagentd.enable = true;
-    services.spice-webdavd.enable = true;
-  };
+    services.spice-webdavd.enable = false;  #Causes navfs2 build failure invalid neon version  9-12-25
+   };
 }

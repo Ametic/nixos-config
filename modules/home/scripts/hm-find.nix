@@ -1,4 +1,4 @@
-{pkgs}:
+{ pkgs }:
 pkgs.writeShellScriptBin "hm-find" ''
   #!/usr/bin/env bash
 

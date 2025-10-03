@@ -1,6 +1,8 @@
-{host, ...}: let
+{ host, ... }:
+let
   inherit (import ../../hosts/${host}/variables.nix) printEnable;
-in {
+in
+{
   services = {
     printing = {
       enable = printEnable;

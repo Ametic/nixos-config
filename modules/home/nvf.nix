@@ -1,9 +1,8 @@
-{
-  inputs,
-  config,
-  ...
+{ inputs
+, config
+, ...
 }: {
-  imports = [inputs.nvf.homeManagerModules.default];
+  imports = [ inputs.nvf.homeManagerModules.default ];
 
   programs.nvf = {
     enable = true;
@@ -51,81 +50,57 @@
       keymaps = [
         {
           key = "jk";
-          mode = ["i"];
+          mode = [ "i" ];
           action = "<ESC>";
           desc = "Exit insert mode";
         }
         {
           key = "<leader>nh";
-          mode = ["n"];
+          mode = [ "n" ];
           action = ":nohl<CR>";
           desc = "Clear search highlights";
         }
         {
           key = "<leader>ff";
-          mode = ["n"];
+          mode = [ "n" ];
           action = "<cmd>Telescope find_files<cr>";
           desc = "Search files by name";
         }
         {
           key = "<leader>lg";
-          mode = ["n"];
+          mode = [ "n" ];
           action = "<cmd>Telescope live_grep<cr>";
           desc = "Search files by contents";
         }
         {
           key = "<leader>fe";
-          mode = ["n"];
+          mode = [ "n" ];
           action = "<cmd>Neotree toggle<cr>";
           desc = "File browser toggle";
         }
         {
           key = "<C-h>";
-          mode = ["i"];
+          mode = [ "i" ];
           action = "<Left>";
           desc = "Move left in insert mode";
         }
         {
           key = "<C-j>";
-          mode = ["i"];
+          mode = [ "i" ];
           action = "<Down>";
           desc = "Move down in insert mode";
         }
         {
           key = "<C-k>";
-          mode = ["i"];
+          mode = [ "i" ];
           action = "<Up>";
           desc = "Move up in insert mode";
         }
         {
           key = "<C-l>";
-          mode = ["i"];
+          mode = [ "i" ];
           action = "<Right>";
           desc = "Move right in insert mode";
-        }
-        {
-          key = "<leader>dj";
-          mode = ["n"];
-          action = "<cmd>Lspsaga diagnostic_jump_next<CR>";
-          desc = "Go to next diagnostic";
-        }
-        {
-          key = "<leader>dk";
-          mode = ["n"];
-          action = "<cmd>Lspsaga diagnostic_jump_prev<CR>";
-          desc = "Go to previous diagnostic";
-        }
-        {
-          key = "<leader>dl";
-          mode = ["n"];
-          action = "<cmd>Lspsaga show_line_diagnostics<CR>";
-          desc = "Show diagnostic details";
-        }
-        {
-          key = "<leader>dt";
-          mode = ["n"];
-          action = "<cmd>Trouble diagnostics toggle<cr>";
-          desc = "Toggle diagnostics list";
         }
       ];
 
@@ -133,7 +108,7 @@
 
       spellcheck = {
         enable = true;
-        languages = ["en"];
+        languages = [ "en" ];
         programmingWordlist.enable = true;
       };
 
@@ -146,10 +121,6 @@
         lspSignature.enable = true;
         otter-nvim.enable = false;
         nvim-docs-view.enable = false;
-      };
-      
-      presence = {
-      	neocord.enable = true;
       };
 
       languages = {
@@ -170,7 +141,7 @@
         html.enable = true;
         lua.enable = true;
         css = {
-          enable = false;
+          enable = true;
           format.type = "prettierd";
         };
         typst.enable = true;
@@ -209,7 +180,7 @@
         gitsigns.codeActions.enable = false;
       };
       projects.project-nvim.enable = true;
-      dashboard.alpha.enable = true;
+      dashboard.dashboard-nvim.enable = true;
       filetree.neo-tree.enable = true;
       notify = {
         nvim-notify.enable = true;
@@ -252,32 +223,46 @@
       comments = {
         comment-nvim.enable = true;
       };
+      
+      luaConfigPost = ''
+        -- Nix LSP (nil) configuration for auto-eval-inputs
+        local lspconfig = require('lspconfig')
+        lspconfig.nil_ls.setup({
+          settings = {
+            ['nil'] = {
+              nix = {
+                auto_eval_inputs = true,
+              },
+            },
+          },
+        })
+        
+        -- Auto-update programming wordlist on first startup
+        vim.api.nvim_create_autocmd("VimEnter", {
+          callback = function()
+            -- Check if dirtytalk dict file exists
+            local dict_path = vim.fn.stdpath('data') .. '/site/spell/programming.utf-8.add'
+            if vim.fn.filereadable(dict_path) == 0 then
+              -- Only run if file doesn't exist to avoid repeated downloads
+              vim.schedule(function()
+                vim.cmd('DirtytalkUpdate')
+              end)
+            end
+          end,
+        })
+      '';
     };
   };
 
-  # Source custom Lua explicitly
-  home.file.".config/nvim/init.lua" = {
-    text = ''
-      vim.notify("Main init.lua loaded", vim.log.levels.INFO)
-      pcall(require, "custom.init")
-    '';
-  };
-
-  home.file.".config/nvim/lua/custom/init.lua" = {
-    text = ''
-      -- Debug notification
-      vim.notify("Custom Lua loaded", vim.log.levels.INFO)
-      -- Diagnostics configuration (fallback)
-      vim.diagnostic.config({
-        virtual_text = {
-          spacing = 4,
-          prefix = "●"
-        },
-        signs = true,
-        underline = true,
-        update_in_insert = false,
-        severity_sort = true
-      })
+  home.activation = {
+    dirtytalkUpdate = ''
+      # Create the spell directory if it doesn't exist
+      mkdir -p "$HOME/.local/share/nvim/site/spell"
+      
+      # Try to run DirtytalkUpdate in headless mode with better error handling
+      if ! ${config.programs.nvf.finalPackage}/bin/nvim --headless -c "DirtytalkUpdate" -c "qa!" 2>/dev/null; then
+        echo "Note: DirtytalkUpdate will run automatically on first Neovim startup"
+      fi
     '';
   };
 }

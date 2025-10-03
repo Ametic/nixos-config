@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   wayland.windowManager.hyprland.settings = {
     # name "Dynamic"
     # credit https://github.com/mylinuxforwork/dotfiles

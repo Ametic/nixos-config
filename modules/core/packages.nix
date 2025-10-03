@@ -1,17 +1,25 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}:
+{
   programs = {
     neovim = {
       enable = true;
       defaultEditor = true;
     };
-    firefox.enable = false; # Firefox is not installed by default
+    firefox.enable = true; # Firefox is not installed by default
+    hyprland = {
+      enable = true; # set this so desktop file is created
+      withUWSM = false;
+    };
     dconf.enable = true;
     seahorse.enable = true;
-    hyprland.enable = true; #create desktop file and depedencies if you switch to GUI login MGR
-    hyprlock.enable = true; #resolve pam issue https://gitlab.com/Zaney/zaneyos/-/issues/164
     fuse.userAllowOther = true;
     mtr.enable = true;
     adb.enable = true;
+    hyprlock.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -21,24 +29,26 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    # Hyprland systeminfo QT  (Optional)
+    #inputs.hyprsysteminfo.packages.${pkgs.system}.default
+
     amfora # Fancy Terminal Browser For Gemini Protocol
     appimage-run # Needed For AppImage Support
-    bottom # btop like util
     brave # Brave Browser
     brightnessctl # For Screen Brightness Control
+    cliphist # Clipboard manager using rofi menu
     cmatrix # Matrix Movie Effect In Terminal
     cowsay # Great Fun Terminal Program
     docker-compose # Allows Controlling Docker From A Single File
     duf # Utility For Viewing Disk Usage In Terminal
-    dysk # disk usage util
+    dysk # Disk space util nice formattting
     eza # Beautiful ls Replacement
     ffmpeg # Terminal Video / Audio Editing
     file-roller # Archive Manager
-    gdu # graphical disk usage
     gedit # Simple Graphical Text Editor
+    #gemini-cli # CLI AI client ONLY (optional)
     gimp # Great Photo Editor
-    glxinfo # Needed for inxi -G GPU info
-    gping #graphical ping
+    glxinfo # needed for inxi diag util
     greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     htop # Simple Terminal Based System Monitor
     hyprpicker # Color Picker
@@ -52,24 +62,24 @@
     mpv # Incredible Video Player
     ncdu # Disk Usage Analyzer With Ncurses Interface
     nixfmt-rfc-style # Nix Formatter
-    onefetch #shows current build info and stats
+    nwg-displays # configure monitor configs via GUI
+    onefetch # provides zsaneyos build info on current system
     pavucontrol # For Editing Audio Levels & Devices
     pciutils # Collection Of Tools For Inspecting PCI Devices
     picard # For Changing Music Metadata & Getting Cover Art
     pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
     playerctl # Allows Changing Media Volume Through Scripts
-    rhythmbox
+    rhythmbox # audio player
     ripgrep # Improved Grep
     socat # Needed For Screenshots
-    sox # audio support for FFMPEG
     unrar # Tool For Handling .rar Files
     unzip # Tool For Handling .zip Files
     usbutils # Good Tools For USB Devices
+    uwsm # Universal Wayland Session Manager (optional must be enabled)
     v4l-utils # Used For Things Like OBS Virtual Camera
-    waypaper # backup wallpaper GUI
+    waypaper  # wallpaper changer
+    warp-terminal # Terminal with AI support build in
     wget # Tool For Fetching Files With Links
     ytmdl # Tool For Downloading Audio From YouTube
-    android-tools
-    adb-sync
   ];
 }
