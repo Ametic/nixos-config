@@ -12,5 +12,6 @@
     kdePackages.kdenlive
     video-downloader
     droidcam
+    youtube-music
   ];
 }

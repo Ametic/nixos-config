@@ -33,8 +33,7 @@
     #inputs.hyprsysteminfo.packages.${pkgs.system}.default
 
     amfora # Fancy Terminal Browser For Gemini Protocol
-    appimage-run # Needed For AppImage Support
-    brave # Brave Browser
+    appimage-run # Needed For AppImage Support 
     brightnessctl # For Screen Brightness Control
     cliphist # Clipboard manager using rofi menu
     cmatrix # Matrix Movie Effect In Terminal
@@ -69,6 +68,11 @@
     picard # For Changing Music Metadata & Getting Cover Art
     pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
     playerctl # Allows Changing Media Volume Through Scripts
+    python313Full
+    python313Packages.mysql-connector
+    python313Packages.mysqlclient
+    python313Packages.scp
+    python313Packages.paramiko
     rhythmbox # audio player
     ripgrep # Improved Grep
     socat # Needed For Screenshots
