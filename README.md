@@ -28,27 +28,3 @@ currently using on my main PC is called "desktop".
   that i can learn from.
 - [dwilliam62](https://gitlab.com/dwilliam62) - for helping me fixing some
   problems on Zaney's Discord server.
-
-```
-nix-shell -p git curl
-```
-
-```
-sh <(curl -L https://raw.githubusercontent.com/Ametic/nixos-config/refs/heads/main/install-ameos.sh)
-```
-
-It will run the install script. Or just clone the repo, and install it by manual
-
-install provided [there](https://gitlab.com/Zaney/zaneyos). Host name that i'm
-
-currently using on my main PC is called "desktop".
-
-# Big thanks to:
-
-- [Zaney](https://gitlab.com/Zaney) - for providing this nice and easy setup
-
-  that i can learn from.
-
-- [dwilliam62](https://gitlab.com/dwilliam62) - for helping me fixing some
-
-  problems on Zaney's Discord server.
