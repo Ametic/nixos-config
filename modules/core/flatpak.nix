@@ -14,7 +14,7 @@
       packages = [
         "com.github.tchx84.Flatseal" #Manage flatpak permissions - should always have this
         "org.vinegarhq.Sober"
-        "com.obsproject.Studio"
+        #"com.obsproject.Studio"
 
         # Add other Flatpak IDs here, e.g., "org.mozilla.firefox"
       ];

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, nixpkgs-master, ...}: {
   environment.systemPackages = with pkgs; [
     audacity
     discord
@@ -13,5 +13,8 @@
     video-downloader
     droidcam
     youtube-music
+    filezilla
+  ] ++ [
+    nixpkgs-master.taterclient-ddnet
   ];
 }

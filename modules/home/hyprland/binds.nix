@@ -13,6 +13,7 @@ in
       "$modifier,K,exec,list-keybinds"
       "$modifier SHIFT,Return,exec,rofi-launcher"
       "$modifier ,R,exec,rofi-launcher"
+      "$modifier SHIFT,P,exec,idle-toggle"
       "$modifier SHIFT,W,exec,web-search"
       "$modifier ALT,W,exec,wallsetter"
       "$modifier SHIFT,N,exec,swaync-client -rs"

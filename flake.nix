@@ -7,6 +7,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nvf.url = "github:notashelf/nvf";
     stylix.url = "github:danth/stylix/release-25.05";
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
@@ -25,6 +26,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-master,
       home-manager,
       nix-flatpak,
       ...
@@ -35,6 +37,11 @@
     profile = "amd";
       username = "jakub";
 
+      pkgs-master = import nixpkgs-master {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
       # Deduplicate nixosConfigurations while preserving the top-level 'profile'
       mkNixosConfig = gpuProfile: nixpkgs.lib.nixosSystem {
         inherit system;
@@ -43,6 +50,7 @@
           inherit username;
           inherit host;
           inherit profile; # keep using the let-bound profile for modules/scripts
+          nixpkgs-master = pkgs-master;
         };
         modules = [
           ./profiles/${gpuProfile}

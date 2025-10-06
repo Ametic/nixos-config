@@ -5,6 +5,7 @@ _: {
     hyprland.enable = false;
     hyprlock.enable = false;
     ghostty.enable = false;
+    nixcord.enable = false;
     qt = {
       enable = true;
       platform = "qtct";

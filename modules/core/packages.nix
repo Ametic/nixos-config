@@ -68,11 +68,6 @@
     picard # For Changing Music Metadata & Getting Cover Art
     pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
     playerctl # Allows Changing Media Volume Through Scripts
-    python313Full
-    python313Packages.mysql-connector
-    python313Packages.mysqlclient
-    python313Packages.scp
-    python313Packages.paramiko
     rhythmbox # audio player
     ripgrep # Improved Grep
     socat # Needed For Screenshots
@@ -85,5 +80,13 @@
     warp-terminal # Terminal with AI support build in
     wget # Tool For Fetching Files With Links
     ytmdl # Tool For Downloading Audio From YouTube
+    # Gaming 
+    mangohud
+    protonup-qt
+    lutris
+    bottles
+    heroic
+
+    freetype
   ];
 }

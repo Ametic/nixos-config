@@ -180,7 +180,7 @@
         gitsigns.codeActions.enable = false;
       };
       projects.project-nvim.enable = true;
-      dashboard.dashboard-nvim.enable = true;
+      dashboard.alpha.enable = true;
       filetree.neo-tree.enable = true;
       notify = {
         nvim-notify.enable = true;
@@ -222,6 +222,9 @@
       };
       comments = {
         comment-nvim.enable = true;
+      };
+      presence = {
+        neocord.enable = true;
       };
       
       luaConfigPost = ''
