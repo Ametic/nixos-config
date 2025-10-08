@@ -14,6 +14,7 @@
     droidcam
     youtube-music
     filezilla
+    davinci-resolve
   ] ++ [
     nixpkgs-master.taterclient-ddnet
   ];

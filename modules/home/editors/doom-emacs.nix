@@ -32,12 +32,12 @@
      doom-quit
      hl-todo
      modeline
+     neotree
      nav-flash
      ophints
      (popup +defaults)
      (ligatures +extra)
      tabs
-     treemacs
      vi-tilde-fringe
      window-select
 
@@ -79,8 +79,12 @@
      docker
      html
      (json +lsp)
+     javascript
      markdown
      (nix +tree-sitter +lsp)
+     org
+     python
+     sh
      toml
      yaml
 
