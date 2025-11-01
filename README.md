@@ -19,8 +19,8 @@ nix-shell -p git vim
 > 2. Clone this repo & enter it:
 
 ```
-cd && git clone https://github.com/ametic/nixos-config --depth=1 ~/ameos 
-cd ameos
+cd && git clone https://github.com/ametic/nixos-config --depth=1 ~/zaneyos 
+cd zaneyos
 ```
 
 > [!NOTE]
