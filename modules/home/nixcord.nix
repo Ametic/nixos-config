@@ -14,7 +14,6 @@
       ];
       frameless = true;
       plugins = {
-        betterFolders.enable = true;
         expressionCloner.enable = true;
         readAllNotificationsButton.enable = true;
         newGuildSettings.enable = true;

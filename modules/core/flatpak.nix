@@ -15,6 +15,7 @@
         "com.github.tchx84.Flatseal" #Manage flatpak permissions - should always have this
         "org.vinegarhq.Sober"
         #"com.obsproject.Studio"
+        "io.github.Soundux"
 
         # Add other Flatpak IDs here, e.g., "org.mozilla.firefox"
       ];

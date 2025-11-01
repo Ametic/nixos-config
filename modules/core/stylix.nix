@@ -41,12 +41,12 @@ in
         name = "JetBrains Mono";
       };
       sansSerif = {
-        package = pkgs.montserrat;
-        name = "Montserrat";
+        package = pkgs.inter;
+        name = "Inter";
       };
       serif = {
-        package = pkgs.montserrat;
-        name = "Montserrat";
+        package = pkgs.inter;
+        name = "Inter";
       };
       sizes = {
         applications = 12;
