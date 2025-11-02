@@ -27,6 +27,11 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/main.tar.gz") {
+      inherit pkgs;
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     # Hyprland systeminfo QT  (Optional)

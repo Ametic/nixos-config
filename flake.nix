@@ -12,6 +12,10 @@
     stylix.url = "github:danth/stylix/release-25.05";
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
     nixcord.url = "github:kaylorben/nixcord";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Hypersysinfo  (Optional)
     #hyprsysteminfo.url = "github:hyprwm/hyprsysteminfo";
